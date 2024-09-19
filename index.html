@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Validate Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="container">
+    <form name="submit-to-google-sheet" class="form">
+
+      <div class="icon">
+        <img src="https://www.svgrepo.com/show/30442/send.svg" alt="Submit Icon" class="submit-icon">
+      </div>
+
+      <div>
+        <div class="nameInput form-group">
+          <label>Full Name</label>
+          <input name="fullName" class="input" id="fullName" type="text" placeholder="Enter your name" />
+          <span id="name-error"></span>
+        </div>
+
+        <div class="phoneInput form-group">
+          <label>Phone No.</label>
+          <input name="phone" class="input" id="phone" type="tel" placeholder="0191234567" />
+          <span id="phone-error"></span>
+        </div>
+
+        <div class="nationalID form-group">
+          <label>National ID</label>
+          <input name="national" class="input" id="national" type="text" placeholder="30207011327174" />
+          <span id="national-error"></span>
+        </div>
+
+        <div class="emailInput form-group">
+          <label>Email Id</label>
+          <input name="email" class="input" id="email" type="email" placeholder="Enter Email" />
+          <span id="email-error"></span>
+        </div>
+
+        <div class="messageInput form-group">
+          <label>Your Message</label>
+          <textarea name="message" class="input" id="message" rows="5" placeholder="Enter your message"></textarea>
+          <span id="message-error"></span>
+        </div>
+      </div>
+
+      <div class="btn">
+        <button class="submit" type="submit">Submit</button>
+      </div>
+    </form>
+  <div id="submit-error">
+    <img class="submitImg" src="https://cdn-icons-png.flaticon.com/512/4315/4315445.png" />
+    <h1 id="submitted"></h1>
+    <button class="closeBtn">Reset</button>
+  </div>
+  <div class="loadImgCon">
+    <img src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca.gif" class="loadImg" />
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
