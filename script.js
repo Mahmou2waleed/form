@@ -102,7 +102,13 @@ form.addEventListener('submit', e => {
     isValid = false;
   }
 
+  if (!isValid) return; 
+
   form.style.display = "none";
+  loadImgCon.style.display = "flex"; 
+
+  let formData = new FormData(form);
+  formData.set('phone', "'" + phone.value);
 
   function er_ror() {
     submitError.innerHTML = `
@@ -116,28 +122,20 @@ form.addEventListener('submit', e => {
     closeBtn.onclick = resetForm;
   }
 
-  if (isValid) {
-    phone.value = "\'" + phone.value;
-    console.log(phone.value);
-    loadImgCon.style.display = "flex";
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-      .then(response => {
-        submitError.style.display = "flex";
-        form.style.display = "none";
-        submitted.innerText = `Thanks, ${fullName.value}! Your message is submitted`;
-      })
-      .catch(er_ror);
-  }
+  fetch(scriptURL, { method: 'POST', body: formData })
+    .then(response => {
+      loadImgCon.style.display = "none";
+      submitError.style.display = "flex";
+      submitted.innerText = `Thanks, ${fullName.value}! Your message is submitted`;
+      submitted.style.display = "block";
+      form.reset(); 
+    })
+    .catch(er_ror);
 });
 
 function resetForm() {
   submitError.style.display = "none";
-
-  fullName.value = "";
-  phone.value = "";
-  national.value = "";
-  email.value = "";
-  message.value = "";
+  form.reset(); 
 
   nameError.innerText = "";
   phoneError.innerText = "";
@@ -149,5 +147,8 @@ function resetForm() {
   form.style.display = "flex";
 }
 
-// Handle the close button click in case form is reset without using the submit function
-document.querySelector('.closeBtn').addEventListener('click', resetForm);
+document.addEventListener('click', function (event) {
+  if (event.target.matches('.closeBtn')) {
+    resetForm();
+  }
+});
